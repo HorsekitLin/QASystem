@@ -1,0 +1,7 @@
+*.pyc
+app/static/package.json
+app/static/scss/
+app.ststic/.sass-cache/
+app/static/roborts.txt
+app/static/index.html
+app/static/humans.txt

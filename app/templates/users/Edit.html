@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+    {% block script %}
+        <script src="{{ url_for('static', filename='QASystem/js/aj-address.js') }}"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('.address-zone').ajaddress();
+            });
+        </script>
+
+    {% endblock %}
+
+    {% block body %}
+    <div class='row'>
+        <div class='small-12 columns'>
+            <h1>QASystem 線上系統</h1>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='samll-12 columns'>
+            <form method="POST" action="." enctype=multipart/form-data>
+                <fieldset>
+                    <legend>請輸入</legend>
+                    {{ form.hidden_tag() }}
+                    {{ form.pwd(placeholder='Password') }}
+                    {{ form.name(placeholder='Nickname') }}
+                    {{ form.logo(placeholder='Logo') }}
+                    {{ form.skills(placeholder='skill,interest') }}
+                    {{ form.email(placeholder='Email Address') }}
+                    <input id="submit" name="submit" type="submit"
+                        value="修改" class="button "></input>
+                    {% for field in form %}
+                        {% if field.errors %}
+                            {{ field.errors|join(' ') }}
+                        {% endif %}
+                    {% endfor%}
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+

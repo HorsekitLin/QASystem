@@ -1,0 +1,25 @@
+    {% extends 'layout.html' %}
+    {% block body %}
+    <div class='row'>
+        <div class='small-12 columns'>
+            {% include 'components/bar/basic.html' %}
+        </div>
+    </div>
+    {% import 'macro/error.html' as error %}
+    <div class='row'>
+        <div class='small-12 columns'>
+            <form action='{{ url_for("todo.create") }}' method='POST'>
+                <fieldset>
+                    {{ form.hidden_tag() }}
+                    {{ form.topic(placeholder= 'Topic') }}
+                    {{ error.with_errors(form.topic) }}
+                    <input type='date' name='start' id='start'>
+                    <input type='date' name='end' id='end'>
+                    {{ form.desc(placeholder = '請輸入描述內容') }}
+                    {{ error.with_errors(form.desc) }}
+                            <input type='submit' value='送出'>
+                </fieldset>
+            </form>
+        </div>
+        </div>
+    {% endblock %}

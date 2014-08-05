@@ -1,0 +1,54 @@
+{% macro list(listid, title, attrs, attrid, dropid) %}
+    <div id='{{ listid }}' class='row'>
+        <div class='small-12 columns'>
+            <h3>{{ title }}</h3>
+            {% if attrs | count == 0  %}
+                <div class='row'>
+                    <div class='small-12 columns'>
+                        <div data-alert class="alert-box warning round">
+                            This list didn't have any infomation!
+                            <!--<a href="#" class="close">&times;</a>-->
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <dl class='accordion' data-accordion>
+                {% for attr in attrs %}
+                    <dd>
+                    <a href='#{{ attrid }}{{ loop.index }}'>{{ loop.index }} . {{ attr.topic }}</a>
+                        <div id="{{ attrid }}{{ loop.index }}" class="row content">
+                                <div class='small-10 columns'>
+                                <p>Start:{{ attr.start }}</p>
+                                <p>End:{{ attr.end }}</p>
+                                <p>Desc:{{ attr.desc }}</p>
+                            </div>
+                            <div class='small-2 columns'>
+                                <p>
+                                <a href="{{ url_for('todo.done', obj_id=attr.id ) }}" style='background:#43ac6a;'
+                                    class="tiny button split round success">完成
+                                    <span data-dropdown="{{ dropid }}{{ loop.index }}"></span>
+                                    </a>
+                                </p>
+                                <ul id="{{ dropid }}{{ loop.index }}" class="f-dropdown" data-dropdown-content>
+                                    <li><a href="{{ url_for('todo.note', obj_id=attr.id ) }}">筆記</a></li>
+                                    <li><a href="{{ url_for('.update', obj_id=attr.id) }}">修改</a></li>
+                                    <li><a href="{{ url_for('todo.delete', obj_id=attr.id) }}">刪除</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </dd>
+                {% endfor %}
+            </dl>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro with_errors(field) %}
+<ul>
+    {% for error in field.errors %}
+        {% if error %}
+            <li>{{ error }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endmacro %}

@@ -1,0 +1,37 @@
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+        <h1><a href="{{ url_for('todo.list') }}">QASystem</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
+
+    <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+        <li class="active"><a href="#"></a></li>
+      <li>
+        <a href="{{ url_for('users.logout') }}">登出</a>
+      </li>
+    </ul>
+
+    <!-- Left Nav Section -->
+    <ul class="left">
+        <li><a href="{{ url_for('todo.create') }}">新增功能</a></li>
+        <li><a href="{{ url_for('todo.list') }}">TODO 列表</a></li>
+        <li><a href="{{ url_for('users.list') }}">Users List</a></li>
+        <li><a href="{{ url_for('admin.info') }}">Admin</a></li>
+
+        <li class='has-form'>
+            <div class='row collapse'>
+                <div class='small-9 columns'>
+                    <input type="text" ng-model="search" name='search' placeholder="Find Stuff">
+                    </div>
+                    <div class='small-3 columns'>
+                        <a href='{{ url_for("todo.search", condition=search) }}{{search}}' class='alert button expand'>Search</a>
+                    </div>
+                    </div>
+        </li>
+    </ul>
+    </section>
+</nav>

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+    {% block body %}
+    <header>
+        <div class='row'>
+            <div class='small-12 columns'>
+                {% include 'components/bar/unauthorization.html' %}
+            </div>
+        </div>
+    </header>
+    {% for user in users %}
+    <div class='row'>
+        <div class='small-12 columns'>
+
+            <section>
+                <div class='row'>
+                    <div class='large-12 small-12 columns'>
+                        <img src='/static/QASystem/data/{{ user.account }}/{{ user.logo }}'>
+                        <p>{{ user.account }}</p>
+                        <p>Email : {{ user.email }}</p>
+                        <p>Computer Skill : Python, PHP, Nodejs, MongoDB</p>
+                        <p>Demo :</p>
+                        <ul>
+                            {% for url in user.demourl %}
+                            <li> <a href='{{ url }}'>{{ url }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}

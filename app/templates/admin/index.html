@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+    {% block body %}
+        {% from 'macro/models.html' import list %}
+        <div class='row'>
+            <div class='small-12 columns'>
+                {% include 'components/bar/basic.html' %}
+            </div>
+        </div>
+        <div class='row'>
+            <div class='large-3 small-12 columns'>
+                <h4>功能列表</h4>
+                <session class='row'>
+                    <a href="{{ url_for('admin.info') }}"> 個人資料</a>
+                </session>
+                <session class='row'>
+                    <a href="#">權限設定</a>
+                </session>
+
+            </div>
+            <div class='large-9 small-12 columns'>
+                <session class='row'>
+                    <div class='small-12 columns'>
+                        <h4>{{ user.account }}</h4>
+                    </div>
+                    <div class='small-12 columns'>
+                        <a class="th radius" href="/static/QASystem/data/{{ user.account }}/{{ user.logo }}">
+                            <img src='/static/QASystem/data/{{ user.account }}/{{ user.logo }}'>
+                        </a>
+                    </div>
+
+                    <div class='small-12 columns'>
+                        <a class='th' href='{{ url_for("users.edit", uid=user.id ) }}'>Edit</a>
+                    </div>
+
+                    <div class='small-12 columns'>
+                        <h5>Nickname:{{ user.name }}</h5>
+                        <h5>Email:{{ user.email }}</h5>
+                        <h5>Skills: {{ user.skills }}</h5>
+                        <h5>DEMO:</h5>
+
+                        <form action='.' method='POST'>
+                            <input type='url' name='demo_url' id='demo_url' placeholder='Input URL here'>
+                            <input type='submit' class="button tiny round" value='+'>
+                        </form>
+
+                        {% if error_msg %}
+                        <div data-alert class="alert-box alert radius">
+                            {{ error_msg }}
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                        {% endif %}
+
+                        {% for demo in user.demourl %}
+                        <session class='row'>
+                            <div class='large-4 small-12 columns'>
+                                <a class='th' href='{{ demo }}'><h5>{{ demo }}</h5></a>
+                            </div>
+                        </session>
+                        {% endfor %}
+                    </div>
+                </session>
+            </div>
+        </div>
+
+    {% endblock %}

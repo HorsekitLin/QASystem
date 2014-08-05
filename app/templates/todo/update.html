@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+    {% block body %}
+    <header>
+    <div class='row'>
+        <div class='small-12 columns'>
+            {% include 'components/bar/basic.html' %}
+        </div>
+    </div>
+    </header>
+    {% import 'macro/error.html' as error %}
+    <section>
+        <div class='row'>
+            <div class='small-12 columns'>
+                <form action='{{ url_for("todo.update", obj_id=todo.id) }}' method='POST'>
+                    <fieldset>
+                        {{ form.hidden_tag() }}
+                        {{ form.topic(placeholder=todo.topic) }}
+                        {{ error.with_errors(form.topic) }}
+
+                        <input type='date' name='start' id='start'>
+                        <input type='date' name='end' id='end'>
+                        {{ form.desc(placeholder=todo.desc) }}
+                        {{ error.with_errors(form.desc) }}
+                                <input type='submit' value='送出'>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+    {% endblock %}

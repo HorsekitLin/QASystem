@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+    {% block body %}
+        {% from 'macro/models.html' import list %}
+        <header>
+            <div class='row'>
+                <div class='small-12 columns'>
+                    {% include 'components/bar/basic.html' %}
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class='row'>
+                <div class='small-12 columns'>
+                    <div data-magellan-expedition="fixed">
+                        <dl class="sub-nav">
+                            <dd data-magellan-arrival="todo-list"><a href="#todo-list">Todo List</a></dd>
+                            <dd data-magellan-arrival="done-list"><a href="#done-list">Done List</a></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            {{ list('todo-list', 'Todo List', todos, 'todo', 'todo-drop') }}
+        </section>
+        <section>
+            {{ list('done-list', 'Done List', dones, 'done', 'done-drop') }}
+        </section>
+        <footer>
+        </footer>
+    {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+    {% block body %}
+        {% from 'macro/models.html' import list %}
+        <div class='row'>
+            <div class='small-12 columns'>
+                {% include 'components/bar/basic.html' %}
+            </div>
+        </div>
+        {% if todos %}
+        {{ list('result-list', 'Result List', todos, 'todo', 'todo-drop') }}
+        {% else %}
+            <div class='row'>
+                <div class='small-12 columns'>
+                    <div data-alert class="alert-box warning round">
+                        Don't find any match infomation!
+                        <!--<a href="#" class="close">&times;</a>-->
+                        </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}

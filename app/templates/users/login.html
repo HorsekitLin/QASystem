@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class='row'>
+        <div class='small-12 columns'>
+            <h1>QASystem 線上系統</h1>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='small-4 columns'>
+            <div class='row'>
+                <div class='small-12 comumns'>
+                    <form method="POST" action=".">
+                        <fieldset>
+                            <legend>請輸入</legend>
+                            {{ form.hidden_tag() }}
+                            {{ form.account(placeholder='帳號') }}
+                            {{ form.pwd(placeholder='密碼') }}
+                            <input id="submit" name="submit" type="submit"
+                                value="登入" class="button "></input>
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    {{ field.errors|join(' ') }}
+                                {% endif %}
+                            {% endfor%}
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='small-12 columns'>
+                    <a href="{{ url_for('users.create') }}">註冊</a>
+                </div>
+            </div>
+
+        </div>
+        <div class='small-8 columns'>
+            <p>A simple Question and Answear System.</p></p>
+            <p>Here! you can write your Todo , Questio, Answear, Note...............</p>
+            <p>In the future, you could search for infomation or a note in the past that will help you won't waste your time to do the same thing. </p>
+
+            <p>Web framework : Flask</p>
+            <p>DataBase : MongoDB</p>
+            <p>Javascript : JQuery or Angularjs</p>
+            <p>CSS : SASS and Compass</p>
+            <p>more.........</p>
+        </div>
+    </div>
+
+{% endblock%}
+
